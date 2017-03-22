@@ -1,11 +1,12 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-
 const path = require("path");
-const dirApp = path.join(__dirname, 'src');
 
- const config = {
+const dirApp = path.join(__dirname, 'src');
+const isPro = process.env.NODE_ENV == 'production';
+
+const config = {
   entry: {
     main: "app.js",
 
@@ -21,7 +22,7 @@ const dirApp = path.join(__dirname, 'src');
     //publicPath: "/js/",
     filename: '[name].bundle.js'
   },
-  devtool: 'eval',
+  devtool: isPro? false:'eval',
   module: {
     rules: [
         {
@@ -49,7 +50,6 @@ const dirApp = path.join(__dirname, 'src');
     open: true
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       title: 'Inicio | Luna',
       inject: true,
@@ -60,9 +60,12 @@ const dirApp = path.join(__dirname, 'src');
   ]
 }
 
-if (process.env.NODE_ENV == 'production') {
+var cfg = [];
+var rules = [];
 
-   let cfg = [
+if (isPro) {
+  cfg = [
+     new webpack.optimize.DedupePlugin(),
      new webpack.optimize.UglifyJsPlugin({
        compress: {
          warnings: false,
@@ -86,21 +89,21 @@ if (process.env.NODE_ENV == 'production') {
        allChunks: true
      })
    ]
-
-  config.plugins = config.plugins.concat(cfg)
-
-  config.module.rules.push(
-      {
-        test: /\.scss$/,
-        use: ExtractTextPlugin.extract({
-          fallbackLoader: 'style-loader',
-          loader: ['css-loader','sass-loader'],
-          publicPath: '/css/'
-        })
-      }
-  );
+  rules = [
+    {
+      test: /\.scss$/,
+      use: ExtractTextPlugin.extract({
+        fallbackLoader: 'style-loader',
+        loader: ['css-loader','sass-loader'],
+        publicPath: '/css/'
+      })
+    }
+  ]
 }else{
-  config.module.rules.push(
+  cfg = [
+    new webpack.HotModuleReplacementPlugin()
+  ]
+  rules = [
     {
       test: /\.scss$/,
       use: [
@@ -109,7 +112,10 @@ if (process.env.NODE_ENV == 'production') {
         { loader: "sass-loader"}
       ]
     }
-  )
+  ]
 }
+
+config.plugins = config.plugins.concat(cfg)
+config.module.rules = config.module.rules.concat(rules)
 
 module.exports = config
