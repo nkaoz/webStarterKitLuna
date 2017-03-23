@@ -16,6 +16,7 @@ const config = {
       'node_modules',
       dirApp
     ]
+    extensions: ['.js', '.jsx']
   },
   output: {
     path: path.resolve(__dirname, "dist/"),
@@ -26,7 +27,7 @@ const config = {
   module: {
     rules: [
         {
-          test: /\.js$/,
+          test: /\.js[x]?$/,
           exclude: /(node_modules|bower_components)/,
           use: 'babel-loader'
         },
@@ -52,9 +53,10 @@ const config = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Inicio | Luna',
-      inject: true,
+      template: './src/pug/index.pug',
+      filename: 'index.html',
       hash: true,
-      template: './src/pug/index.pug', // Load a custom template (ejs by default see the FAQ for details)
+      inject: 'body'
     }),
     new webpack.NoEmitOnErrorsPlugin()
   ]
