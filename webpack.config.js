@@ -15,7 +15,7 @@ const config = {
     modules: [
       'node_modules',
       dirApp
-    ]
+    ],
     extensions: ['.js', '.jsx']
   },
   output: {
@@ -53,7 +53,7 @@ const config = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Inicio | Luna',
-      template: './src/pug/index.pug',
+      template: './src/template/index.pug',
       filename: 'index.html',
       hash: true,
       inject: 'body'
