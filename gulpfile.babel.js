@@ -77,7 +77,5 @@ gulp.task('serve', () => {
 
 });
 
-
-
 gulp.task('build',['clean','views','build:style','stream']);
 gulp.task('default', ['serve']);
