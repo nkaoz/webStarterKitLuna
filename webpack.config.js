@@ -9,7 +9,6 @@ const isPro = process.env.NODE_ENV == 'production';
 const config = {
   entry: {
     main: "app.js",
-
   },
   resolve: {
     modules: [
@@ -19,8 +18,8 @@ const config = {
   },
   output: {
     path: path.resolve(__dirname, "dist/"),
-    //publicPath: "/js/",
-    filename: '[name].bundle.js'
+    publicPath: "/",
+    filename: 'js/[name].bundle.js'
   },
   devtool: isPro? false:'eval',
   module: {
