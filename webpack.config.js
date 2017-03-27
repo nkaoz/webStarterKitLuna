@@ -60,6 +60,7 @@ const config = {
       title: 'Inicio | Luna',
       template: './src/template/index.pug',
       filename: './index.html',
+      favicon: './src/asset/favicon.ico',
       hash: true,
       minify:false,
       inject: 'body'
