@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Hello from './components/hello/hello.jsx';
+
+import './style/app.scss';
+import Hello from './components/hello';
 
 ReactDOM.render(
-  <Hello name="Neil Ruiz" />,
-  document.getElementById('container')
+  <Hello name="Developer Reactjs" />,
+  document.getElementById('root')
 );

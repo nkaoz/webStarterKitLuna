@@ -20,7 +20,7 @@ const config = {
   },
   output: {
     path: path.resolve(__dirname, "dist/"),
-    pathinfo: true,
+    //pathinfo: true,
     filename: "js/bundle.[name].js",
     publicPath: "/"
   },
@@ -52,6 +52,10 @@ const config = {
     open: true
   },
   plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      name: "vendor",
+      minChunks: Infinity
+    }),
     new HtmlWebpackPlugin({
       title: 'Inicio | Luna',
       template: './src/template/index.pug',
@@ -69,10 +73,6 @@ var rules = [];
 
 if (isPro) {
   cfg = [
-    new webpack.optimize.CommonsChunkPlugin({
-      name: "vendor",
-      minChunks: Infinity
-    }),
      new webpack.optimize.DedupePlugin(),
      new webpack.optimize.UglifyJsPlugin({
        compress: {
@@ -110,7 +110,7 @@ if (isPro) {
 }else{
   cfg = [
     new webpack.HotModuleReplacementPlugin()
-  ]
+  ];
   rules = [
     {
       test: /\.scss$/,
