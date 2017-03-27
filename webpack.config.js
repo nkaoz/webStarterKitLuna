@@ -9,7 +9,7 @@ const isPro = process.env.NODE_ENV == 'production';
 const config = {
   entry: {
     main: "app.js",
-
+    vendor: ['react','react-dom']
   },
   resolve: {
     modules: [
@@ -20,8 +20,9 @@ const config = {
   },
   output: {
     path: path.resolve(__dirname, "dist/"),
-    //publicPath: "/js/",
-    filename: '[name].bundle.js'
+    pathinfo: true,
+    filename: "js/bundle.[name].js",
+    publicPath: "/"
   },
   devtool: isPro? false:'eval',
   module: {
@@ -54,8 +55,9 @@ const config = {
     new HtmlWebpackPlugin({
       title: 'Inicio | Luna',
       template: './src/template/index.pug',
-      filename: 'index.html',
+      filename: './index.html',
       hash: true,
+      minify:false,
       inject: 'body'
     }),
     new webpack.NoEmitOnErrorsPlugin()
@@ -67,6 +69,10 @@ var rules = [];
 
 if (isPro) {
   cfg = [
+    new webpack.optimize.CommonsChunkPlugin({
+      name: "vendor",
+      minChunks: Infinity
+    }),
      new webpack.optimize.DedupePlugin(),
      new webpack.optimize.UglifyJsPlugin({
        compress: {
