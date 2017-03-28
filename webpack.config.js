@@ -39,6 +39,30 @@ const config = {
         {
           test: /\.pug$/,
           use: [ 'pug-loader' ]
+        },
+        {
+          test: /\.(jpe?g|png|gif|svg)$/i,
+          loaders: [
+            'file-loader?name=images/[name].[ext]?[hash]',
+            {
+              loader: 'image-webpack-loader',
+              query: {
+                mozjpeg: {
+                  progressive: true,
+                },
+                gifsicle: {
+                  interlaced: true,
+                },
+                optipng: {
+                  optimizationLevel: 7,
+                }
+              }
+            }
+          ]
+        },
+        {
+          test: /\.(eot|svg|ttf|woff|woff2)$/,
+          use: 'file-loader?name=css/fonts/[name].[ext]?[hash]'
         }
     ]
   },
