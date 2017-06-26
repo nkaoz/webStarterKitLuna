@@ -1,0 +1,15 @@
+{
+  'env': {
+    'es6': true
+  },
+  'rules':{
+      'no-console':0
+  },
+  'globals': {
+    'TimelineMax': true,
+    'document': true,
+    'Image': true,
+    'window': true
+  },
+  'extends': 'airbnb/base'
+}
