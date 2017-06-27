@@ -16,7 +16,7 @@ const PATCH = {
   src: {
     views: './src/pug/*.pug',
     styles: './src/scss/*.scss',
-    jsBundle: './src/**/*.js',
+    jsBundle: './src/*/*.js',
     bundle: './src/app.js',
   },
   dist: {
@@ -91,7 +91,6 @@ gulp.task('serve', () => {
     server: ['.tmp', PATCH.dist.views],
     port: 3000,
   });
-
   gulp.watch([PATCH.src.views], ['views', reload]);
   gulp.watch([PATCH.src.styles], ['style', reload]);
   gulp.watch([PATCH.src.bundle, PATCH.src.jsBundle], ['stream', reload]);
