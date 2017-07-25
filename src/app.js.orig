@@ -1,4 +1,5 @@
-
+<<<<<<< HEAD
+<<<<<<< HEAD
 import Test from './coffee/init.coffee';
 import './scss/app.scss';
 
@@ -19,3 +20,7 @@ info.init();
 let name = "Web";
 let dev = "Developer"
 console.log(`Hello, ${name} ${dev}!`);
+>>>>>>> 9f53b5980547718f7cbf6c9c59bff411e3fc6a07
+=======
+
+>>>>>>> bfc6f2965ef17290ef84a441c8a4802b8b00959f
