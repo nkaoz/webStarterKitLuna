@@ -4,5 +4,11 @@ include layout/mixins
 block htmlTitle
   title #{htmlWebpackPlugin.options.title}
 
+block importtop
+  link(rel='stylesheet', href='css/main.css')
+
+block importbottom
+  script(src="js/main.bundle.js")
+
 block content
   h1 Hello Web Developer!
