@@ -15,7 +15,9 @@ import cfg from './webpack.config';
 const PATCH = {
   src: {
     views: './src/pug/*.pug',
+    others: './src/pug/*/*.pug',
     styles: './src/scss/*.scss',
+    stylesComponents: './src/scss/*/*.scss',
     jsBundle: './src/*/*.js',
     bundle: './src/app.js',
   },
@@ -91,8 +93,8 @@ gulp.task('serve', () => {
     server: ['.tmp', PATCH.dist.views],
     port: 3000,
   });
-  gulp.watch([PATCH.src.views], ['views', reload]);
-  gulp.watch([PATCH.src.styles], ['style', reload]);
+  gulp.watch([PATCH.src.views, PATCH.src.others], ['views', reload]);
+  gulp.watch([PATCH.src.styles, PATCH.src.stylesComponents], ['style', reload]);
   gulp.watch([PATCH.src.bundle, PATCH.src.jsBundle], ['stream', reload]);
 });
 
