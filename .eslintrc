@@ -5,7 +5,11 @@
   'rules':{
       'no-console':0
   },
+  { "props": false },
   'globals': {
+    'Swiper': true,
+    'jQuery': true,
+    '$':true,
     'TimelineMax': true,
     'document': true,
     'Image': true,
