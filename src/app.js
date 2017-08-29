@@ -1,8 +1,12 @@
-import dataInfo from './js/info';
+import DataInfo from './js/info';
+import Obj from './coffee/init.coffee';
 
 ((w, d) => {
-    const infox = new info();
-    let name = 'Neil';
-  console.log(d);
-  console.log(dataInfo);
+    const obj = new Obj();
+    const dataInfo = DataInfo;
+    const name = 'Neil';
+    console.log(obj.init());
+    console.log(dataInfo);
+    console.log(name);
+    console.log(d);
 })(window, document);
