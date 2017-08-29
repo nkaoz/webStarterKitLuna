@@ -3,6 +3,7 @@ import pug from 'gulp-pug';
 import sass from 'gulp-sass';
 import csso from 'gulp-csso';
 import rename from 'gulp-rename';
+import gutil from 'gulp-util';
 import browserSync from 'browser-sync';
 import sourcemaps from 'gulp-sourcemaps';
 import del from 'del';
@@ -29,9 +30,9 @@ const PATCH = {
   },
 };
 const reload = browserSync.reload;
-const lPrefix = 'IBK';
+const lPrefix = 'DEV';
 const onError = (err) => {
-  console.log(chalk.red(err));
+  gutil.log(chalk.red(err));
 };
 
 gulp.task('stream', () =>
@@ -41,9 +42,9 @@ gulp.task('stream', () =>
       }))
       .pipe(stream(cfg, webpack, (err, stats) => {
         if (err) {
-          console.log(chalk.red(`[webpack:errors] ${stats.compilation.errors.toString}`));
-          console.log(chalk.red(`[webpack:warnings] ${stats.compilation.warnings.toString}`));
-          console.log('webpack compile success.');
+          gutil.log(chalk.red(`[webpack:errors] ${stats.compilation.errors.toString}`));
+          gutil.log(chalk.red(`[webpack:warnings] ${stats.compilation.warnings.toString}`));
+          gutil.log('webpack compile success.');
         }
       }))
       .pipe(gulp.dest(PATCH.dist.js)),
@@ -86,6 +87,7 @@ gulp.task('clean', () =>
 );
 
 gulp.task('serve', () => {
+  const taskCSS = (process.env.NODE_ENV === 'production') ? 'build:style' : 'style';
   browserSync({
     notify: false,
     logPrefix: lPrefix,
@@ -94,7 +96,7 @@ gulp.task('serve', () => {
     port: 3000,
   });
   gulp.watch([PATCH.src.views, PATCH.src.others], ['views', reload]);
-  gulp.watch([PATCH.src.styles, PATCH.src.stylesComponents], ['style', reload]);
+  gulp.watch([PATCH.src.styles, PATCH.src.stylesComponents], [taskCSS, reload]);
   gulp.watch([PATCH.src.bundle, PATCH.src.jsBundle], ['stream', reload]);
 });
 
