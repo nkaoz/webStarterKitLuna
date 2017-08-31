@@ -11,6 +11,9 @@ import stream from 'webpack-stream';
 import webpack from 'webpack';
 import chalk from 'chalk';
 import plumber from 'gulp-plumber';
+import postcss from 'gulp-postcss';
+import autoprefixer from 'autoprefixer';
+
 import cfg from './webpack.config';
 
 const PATCH = {
@@ -62,14 +65,16 @@ gulp.task('views', () =>
 
 
 gulp.task('style', () =>
+  //processors = [autoprefixer],
   gulp.src(PATCH.src.styles)
-  .pipe(plumber({
-    errorHandler: onError,
-  }))
-  .pipe(sourcemaps.init())
-  .pipe(sass.sync())
-  .pipe(sourcemaps.write())
-  .pipe(gulp.dest(PATCH.dist.styles)),
+    .pipe(plumber({
+      errorHandler: onError,
+    }))
+    .pipe(sass.sync())
+    .pipe(sourcemaps.init())
+    .pipe(postcss([autoprefixer]))
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest(PATCH.dist.styles)),
 );
 
 gulp.task('build:style', () =>
