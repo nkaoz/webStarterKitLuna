@@ -111,7 +111,7 @@ logs
 node_modules
 
 # project
-dist/
-
-
+css/
+js/
+*.php
 package-lock.json
