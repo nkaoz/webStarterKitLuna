@@ -3,6 +3,7 @@
 
 ### init
 ```sh
+  git clone -b gulpWordpress git@github.com:nkaoz/webStarterKitLuna.git theme-child
   npm install
   gulp
 ```
