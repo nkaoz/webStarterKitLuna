@@ -1,7 +1,7 @@
 # webStarterKitLuna
 
 
-### init
+### initializr
 ```sh
   git clone -b gulp git@github.com:nkaoz/webStarterKitLuna.git [NameProject]
   cd [NameProject] 
