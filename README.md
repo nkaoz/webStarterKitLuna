@@ -3,8 +3,10 @@
 
 ### init
 ```sh
+  git clone -b gulp git@github.com:nkaoz/webStarterKitLuna.git [NameProject]
+  cd [NameProject] 
   npm install
-  gulp
+  npm start
 ```
 ### build bundle
 ```sh
@@ -17,3 +19,4 @@
   #eslint fix
   npm run eslintfix src/app.js
 ```
+
