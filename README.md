@@ -19,4 +19,3 @@
   #eslint fix
   npm run eslintfix src/app.js
 ```
-
