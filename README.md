@@ -1,21 +1,20 @@
-# webStarterKitLuna
-
+# webStarterKitLuna Gulp.
 
 ### initializr
 ```sh
   git clone -b gulp git@github.com:nkaoz/webStarterKitLuna.git [NameProject]
   cd [NameProject] 
-  npm install
-  npm start
+  [sudo] npm install
+  [sudo] npm start
 ```
 ### build bundle
 ```sh
-  npm run build
+  [sudo] npm run build
 ```
 ### eslint
 ```sh
   #eslint
-  npm run eslint src/app.js
+  [sudo] npm run eslint src/app.js
   #eslint fix
-  npm run eslintfix src/app.js
+  [sudo] npm run eslintfix src/app.js
 ```
